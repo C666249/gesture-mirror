@@ -1239,12 +1239,12 @@
       return c;
     }
 
-    // 拇指与食指拉开 → 取景框
+    // 拇指与食指拉开 → 取景框（门槛要够高，否则比"1"时拇指自然张开会被误判）
     function frameOf(lm) {
       var palm = Math.max(d2(lm[0], lm[9]), 1e-4);
       var th = lm[4], ix = lm[8];
       var open = d2(th, ix) / palm;
-      if (open < 0.72) return null;
+      if (open < 0.88) return null;
       var ax = 1 - th.x, ay = 1 - th.y;
       var bx = 1 - ix.x, by = 1 - ix.y;
       return {
@@ -1301,7 +1301,7 @@
         }
       }
 
-      if (best && (best.x1 - best.x0) > 0.07 && (best.y1 - best.y0) > 0.07) {
+      if (best && (best.x1 - best.x0) > 0.09 && (best.y1 - best.y0) > 0.09) {
         state.tgt.x0 = best.x0; state.tgt.y0 = best.y0;
         state.tgt.x1 = best.x1; state.tgt.y1 = best.y1;
         state.targetA = 1;
