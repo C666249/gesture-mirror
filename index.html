@@ -1728,8 +1728,13 @@
     }
     if (kv.auto) {
       enableCamera().then(function (ok) {
-        if (ok) { enterStage(); G.startEngine(); }
-        else enterStage();
+        enterStage();
+        if (ok) {
+          G.startEngine();
+          var cb = barEl.querySelector('button[data-act="cam"]');
+          if (cb) { cb.textContent = '关闭'; cb.classList.add('live'); }
+          setHint(HINTS.idle, 6000);
+        }
       });
     }
     if (kv.demo) {
